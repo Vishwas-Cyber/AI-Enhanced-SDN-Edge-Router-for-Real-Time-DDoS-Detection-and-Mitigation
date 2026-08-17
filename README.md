@@ -1,108 +1,146 @@
-# AI-Enhanced-SDN-Edge-Router-for-Real-Time-DDoS-Detection-and-Mitigation
+AI-Enhanced-SDN-Edge-Router-for-Real-Time-DDoS-Detection-and-Mitigation
 
-## Explainable Closed-Loop DDoS Detection and OpenFlow Mitigation
+Explainable Closed-Loop DDoS Detection and OpenFlow Mitigation
+SDN Sentinel is an explainable Software-Defined Networking security platform for authorized network laboratories. It monitors OpenFlow telemetry, detects suspicious high-rate traffic, records the reason for each decision, installs time-bounded OpenFlow mitigation rules, verifies switch counters, and presents the complete response lifecycle through a security-operations dashboard and authenticated API.
 
-SDN Sentinel is an explainable SDN security platform for authorized network laboratories. It monitors live OpenFlow flow statistics, identifies high-rate suspicious traffic, records the reason for each decision, installs time-bounded OpenFlow drop rules, verifies switch counters, and presents the complete response lifecycle through a security-operations dashboard and authenticated API.
+Scope: SDN Sentinel is a validated local-lab and commercial-MVP foundation. It is not a production Internet-scale DDoS scrubbing service. Use it only on networks and traffic you are authorized to test.
 
-> **Scope:** SDN Sentinel is a local research and commercial-MVP foundation. It is not a production Internet DDoS scrubbing service. Use it only on networks and traffic you are authorized to test.
+Project status
+Area	Status
+SDN/OpenFlow implementation	Complete
+Explainable detection	Complete
+Time-bounded mitigation	Complete
+Dashboard	Complete
+FastAPI service	Complete
+Authentication foundation	Complete
+Automated tests	16 passed
+Release validation	Passed
+Doctor checks	Passed
+GitHub publication	Complete
+Reproducible evaluation plan	Included
+Why SDN Sentinel matters
+Many DDoS demonstrations stop after producing a classification label. SDN Sentinel closes the operational loop:
 
----
-
-## Why this project matters
-
-Many DDoS demos stop after displaying a classification label. SDN Sentinel closes the loop:
-
-```text
+text
 Live traffic
     ↓
 OpenFlow flow telemetry
     ↓
 Explainable detection and policy decision
     ↓
-Timed OpenFlow drop rule
+Time-bounded OpenFlow drop rule
     ↓
 Switch counter verification
     ↓
 Dashboard, API, and audit evidence
-```
+The project connects security analytics to an actual programmable network response and makes every response inspectable.
 
-The system connects security analytics to an actual programmable network response and makes the action inspectable.
+Demonstrated results
+The authorized Mininet/Open vSwitch experiment demonstrated:
 
----
+0% packet loss during baseline connectivity checks.
 
-## Demonstrated results
+Approximately 51,804 packets per second during the controlled high-rate experiment.
 
-The authorized Mininet/OVS experiment demonstrated:
+Approximately 5,076,860 bits per second during the attack interval.
 
-- 0% packet loss during baseline connectivity checks.
-- Approximately 51,804 packets/second during the controlled high-rate experiment.
-- Approximately 5,076,860 bits/second observed during the attack interval.
-- Two structured DDoS detection events.
-- Two confirmed priority-500 OpenFlow source-MAC drop rules.
-- Packet and byte counters on the installed rules.
-- 60-second idle timeout and 180-second hard timeout.
-- Authenticated retrieval of events and topology through the API.
-- Automated validation with 16 passing tests.
+Two structured DDoS detection events.
 
-The current documented run verified threshold-based detection and OpenFlow mitigation. Runtime ML probability is reported only when the deployed model satisfies the declared feature contract.
+Two confirmed priority-500 OpenFlow source-MAC drop rules.
 
----
+Packet and byte counters on installed rules.
 
-## Core capabilities
+60-second idle timeout and 180-second hard timeout.
 
-### SDN security
+Authenticated retrieval of events and topology through the API.
 
-- Ryu controller integration.
-- OpenFlow 1.3 switch control.
-- OVS and Mininet laboratory topology.
-- Periodic flow-statistics collection.
-- Packets-per-second and bits-per-second analysis.
-- Explainable threshold and policy decisions.
-- Time-bounded source-MAC mitigation.
-- OpenFlow counter and timeout verification.
+Automated validation with 16 passing tests.
 
-### Operations dashboard
+The documented run verified threshold-based detection and OpenFlow mitigation. Runtime ML probability is reported only when the deployed model satisfies the declared feature contract.
 
-- Overview security metrics.
-- Interactive topology graph.
-- Consistent controller, switch, router, host, and attack-state symbols.
-- Directional control-plane and data-plane flow view.
-- Local Lab Builder for topology modeling.
-- Detection timeline.
-- OpenFlow evidence view.
-- Authorized experiment runbook.
-- Warm security-operations interface.
+Key capabilities
+Detection and mitigation
+Ryu controller integration.
 
-### API and product foundation
+OpenFlow 1.3 switch control.
 
-- FastAPI backend.
-- Health endpoint.
-- Bearer-token authentication foundation.
-- Analyst and admin role separation.
-- Protected topology endpoint.
-- Protected event endpoint.
-- Topology validation.
-- Docker Compose foundation.
-- Release validator and diagnostic script.
+OVS and Mininet laboratory topology.
 
-### Engineering quality
+Periodic flow-statistics collection.
 
-- `requirements.txt` dependency manifest.
-- `pyproject.toml` project configuration.
-- Makefile commands.
-- Pytest test suite.
-- Python compilation checks.
-- GitHub Actions CI workflow.
-- Model feature manifest.
-- Policy configuration.
-- Architecture and threat-model documentation.
-- Research benchmark plan.
+Packets-per-second and bits-per-second analysis.
 
----
+Explainable threshold and policy decisions.
 
-## Architecture
+Optional model-assisted classification under a validated feature contract.
 
-```text
+Time-bounded source-MAC mitigation.
+
+OpenFlow counter and timeout verification.
+
+Structured detection and mitigation events.
+
+Security operations dashboard
+Overview security metrics.
+
+Interactive topology graph.
+
+Consistent controller, switch, router, host, and attack-state symbols.
+
+Directional control-plane and data-plane flow view.
+
+Local Lab Builder for topology modeling.
+
+Detection timeline.
+
+OpenFlow evidence view.
+
+Authorized experiment runbook.
+
+Security-operations presentation layer.
+
+API and product foundation
+FastAPI backend.
+
+Health endpoint.
+
+Bearer-token authentication foundation.
+
+Analyst and admin role separation.
+
+Protected topology endpoint.
+
+Protected event endpoint.
+
+Topology validation.
+
+Docker Compose foundation.
+
+Release validator and diagnostic script.
+
+Engineering quality
+requirements.txt dependency manifest.
+
+pyproject.toml project configuration.
+
+Makefile commands.
+
+Pytest test suite.
+
+Python compilation checks.
+
+GitHub Actions CI workflow.
+
+Model feature manifest.
+
+Policy configuration.
+
+Architecture and threat-model documentation.
+
+Reproducible evaluation plan.
+
+Architecture
+text
 ┌────────────────────────────────────────────────────────────┐
 │ Streamlit Security Operations Dashboard                    │
 │ Overview · Topology · Flow · Detections · OpenFlow Evidence│
@@ -126,21 +164,16 @@ The current documented run verified threshold-based detection and OpenFlow mitig
              ┌──────────┼──────────┐
              │          │          │
            h1 victim   h2 source  h3 source
-```
-
----
-
-## Repository structure
-
-```text
+Repository structure
+text
 .
 ├── api/                         FastAPI service
 ├── configs/                     Topology, policy, experiment, model manifests
 ├── dashboard/                   Streamlit security dashboard
 ├── deployment/                  Docker and health-check assets
-├── docs/                        Architecture, runbooks, reports, research plans
+├── docs/                        Architecture, runbooks, reports, evaluation plan
 ├── results/                     Reviewed experiment and benchmark artifacts
-├── scripts/                     Doctor and release validation utilities
+├── scripts/                     Doctor, topology, and release validation utilities
 ├── src/
 │   ├── controller/              Ryu monitor and OpenFlow mitigation
 │   ├── model_contract.py        Runtime feature-contract validation
@@ -150,29 +183,27 @@ The current documented run verified threshold-based detection and OpenFlow mitig
 ├── Makefile                     Common development commands
 ├── pyproject.toml               Python project and pytest configuration
 └── requirements.txt              Dependencies
-```
-
----
-
-## Requirements
-
+Requirements
 Recommended environment:
 
-- Ubuntu Linux.
-- Python 3.10.
-- Ryu 4.34.
-- Open vSwitch.
-- Mininet.
-- OpenFlow 1.3 support.
-- A local X11/browser environment for the dashboard.
+Ubuntu Linux.
 
-The project was validated with Python 3.10 and the dependency versions declared in `requirements.txt`.
+Python 3.10.
 
----
+Ryu 4.34.
 
-## Installation
+Open vSwitch.
 
-```bash
+Mininet.
+
+OpenFlow 1.3 support.
+
+A local browser environment for the dashboard.
+
+The project uses the dependency versions declared in requirements.txt.
+
+Installation
+bash
 git clone git@github.com:Vishwas-Cyber/AI-Enhanced-SDN-Edge-Router-for-Real-Time-DDoS-Detection-and-Mitigation.git
 cd AI-Enhanced-SDN-Edge-Router-for-Real-Time-DDoS-Detection-and-Mitigation
 
@@ -180,96 +211,72 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-```
+Run the initial release checks:
 
-Run the release checks:
-
-```bash
+bash
 python -m pytest -q
 python scripts/validate_release.py
 ./scripts/doctor.sh
-```
+Expected result:
 
-Expected outcome:
-
-```text
+text
 16 passed
 RELEASE READY: artifacts, topology, policy, and model contract validated
-```
-
----
-
-## Run the dashboard
-
+Run the dashboard
 Keep the dashboard local to the lab machine:
 
-```bash
+bash
 streamlit run dashboard/app.py \
   --server.address 127.0.0.1 \
   --server.port 8501
-```
-
-Open:
-
-```text
-http://127.0.0.1:8501
-```
+Open http://127.0.0.1:8501.
 
 Dashboard sections:
 
-- **Overview:** operational status, metrics, activity chart, and topology snapshot.
-- **Local Lab Builder:** add and validate topology nodes and links in the model.
-- **Topology & Flow:** inspect symbols, paths, planes, states, and packets per second.
-- **Detections:** review structured events and latency charts.
-- **OpenFlow Evidence:** inspect captured mitigation rules and counters.
-- **Runbook:** follow the authorized demonstration workflow.
+Overview: operational status, metrics, activity chart, and topology snapshot.
+
+Local Lab Builder: add and validate topology nodes and links in the model.
+
+Topology & Flow: inspect symbols, paths, planes, states, and packets per second.
+
+Detections: review structured events and latency charts.
+
+OpenFlow Evidence: inspect captured mitigation rules and counters.
+
+Runbook: follow the authorized demonstration workflow.
 
 The dashboard does not execute arbitrary shell commands.
 
----
-
-## Run the API
-
+Run the API
 Start the local API:
 
-```bash
+bash
 uvicorn api.main:app \
   --host 127.0.0.1 \
   --port 8000
-```
-
 Health check:
 
-```bash
+bash
 curl http://127.0.0.1:8000/health
-```
-
 Interactive API documentation:
 
-```text
 http://127.0.0.1:8000/docs
-```
 
-### Local authentication test
-
+Local authentication test
 For local testing only, configure credentials through environment variables:
 
-```bash
+bash
 export SDN_ADMIN_PASSWORD='replace-with-a-long-random-password'
 export SDN_ANALYST_PASSWORD='replace-with-a-different-long-random-password'
-```
-
 Log in:
 
-```bash
+bash
 curl -X POST http://127.0.0.1:8000/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"analyst","password":"YOUR_LOCAL_PASSWORD"}'
-```
-
 Use the returned token without committing it:
 
-```bash
+bash
 export SDN_ACCESS_TOKEN='TOKEN_RETURNED_BY_API'
 
 curl http://127.0.0.1:8000/events \
@@ -277,255 +284,247 @@ curl http://127.0.0.1:8000/events \
 
 curl http://127.0.0.1:8000/topology \
   -H "Authorization: Bearer $SDN_ACCESS_TOKEN"
-```
+Never commit tokens, passwords, private keys, or .streamlit/secrets.toml.
 
-Never commit tokens, passwords, private keys, or `.streamlit/secrets.toml`.
-
----
-
-## Run the authorized SDN experiment
-
+Run the authorized SDN experiment
 Use separate terminals.
 
-### Terminal 1 — Ryu controller
-
-```bash
+Terminal 1 — Ryu controller
+bash
 cd ~/ai-router-project
 source .venv/bin/activate
 ryu-manager src/controller/monitor.py
-```
-
-### Terminal 2 — Mininet topology
-
-```bash
+Terminal 2 — Mininet topology
+bash
 cd ~/ai-router-project
 sudo python3 scripts/custom_topology.py
-```
-
-### Inside Mininet
-
+Inside Mininet
 Verify baseline connectivity:
 
-```text
+text
 pingall
 h2 ping -c 10 h1
-```
-
 Run the controlled authorized traffic experiment:
 
-```text
+text
 h2 ping -f h1
-```
+Stop it with Ctrl+C, then exit Mininet:
 
-Stop it with:
-
-```text
-Ctrl+C
-```
-
-Exit Mininet:
-
-```text
+text
 exit
-```
-
 Verify switch evidence:
 
-```bash
+bash
 sudo ovs-ofctl -O OpenFlow13 dump-flows s1
-```
-
 Look for rules containing:
 
-```text
+text
 priority=500
 idle_timeout=60
 hard_timeout=180
 actions=drop
-```
-
 Only run these experiments on systems and traffic paths you are authorized to test.
 
----
-
-## Model and detection boundary
-
+Model and detection boundary
 The model contract is declared in:
 
-```text
+text
 configs/model_manifest.json
-```
-
 The declared runtime feature order is:
 
-```text
+text
 pps
 bps
 packets
 bytes
 duration_sec
-```
-
 The system must not fabricate a model probability when the persisted artifact does not match the live schema. If the model cannot be used, the event is labelled rule-based or hybrid and the OpenFlow mitigation path remains independently verifiable.
 
-The scikit-learn version used to train and load a persisted model should be controlled. Retrain or validate the model whenever the feature schema or framework version changes.
+Control the scikit-learn version used to train and load persisted models. Retrain or validate the model whenever the feature schema or framework version changes.
 
----
-
-## Policy configuration
-
+Policy configuration
 The default authorized-lab policy is stored in:
 
-```text
+text
 configs/policy.yaml
-```
-
 It defines:
 
-- Packets-per-second threshold.
-- Bits-per-second threshold.
-- Model probability threshold.
-- OpenFlow priority.
-- Idle timeout.
-- Hard timeout.
-- Allowlists.
-- Manual approval mode.
-- Lab scope.
+Packets-per-second threshold.
 
----
+Bits-per-second threshold.
 
-## Testing and release validation
+Model probability threshold.
 
+OpenFlow priority.
+
+Idle timeout.
+
+Hard timeout.
+
+Allowlists.
+
+Manual approval mode.
+
+Lab scope.
+
+Testing and release validation
 Run the complete check suite:
 
-```bash
+bash
 source .venv/bin/activate
 python -m pytest -q
+python -m compileall api dashboard src scripts tests
 python scripts/validate_release.py
 ./scripts/doctor.sh
-```
-
+git diff --check
 Useful Make targets:
 
-```bash
+bash
 make install
 make test
 make compile
 make check
 make dashboard
-```
-
 The GitHub Actions workflow runs compilation and tests on pushes and pull requests.
 
----
+Reproducible evaluation
+The complete evaluation plan is in:
 
-## Research evaluation
+text
+docs/SDN_SENTINEL_10_10_PLAN.md
+The plan covers:
 
-The benchmark plan is in:
+Normal ICMP traffic.
 
-```text
-docs/research/BENCHMARK_PLAN.md
-```
+High-rate ICMP traffic.
 
-Recommended evaluation scenarios:
+UDP traffic.
 
-- Normal ping.
-- Normal burst.
-- High-rate ICMP.
-- Multiple authorized sources.
-- UDP traffic.
-- TCP traffic.
-- Controller unavailable.
-- Model unavailable.
+TCP SYN traffic.
+
+Low-rate periodic traffic.
+
+Multiple authorized sources.
+
+Mixed benign and attack traffic.
+
+Model-unavailable behavior.
+
+Controller restart and recovery.
+
+Rule timeout and reconciliation.
+
+API authentication and authorization failures.
+
+Invalid topology, policy, and model-contract inputs.
 
 Recommended metrics:
 
-- Precision.
-- Recall.
-- F1 score.
-- False-positive rate.
-- False-negative rate.
-- Detection latency.
-- Mitigation latency.
-- Recovery time.
-- Controller resource usage.
-- Switch flow-table usage.
-- Event-ingestion lag.
+Precision.
+
+Recall.
+
+F1 score.
+
+False-positive rate.
+
+False-negative rate.
+
+Detection latency.
+
+Mitigation latency.
+
+Recovery time.
+
+Controller resource usage.
+
+Switch flow-table usage.
+
+Event-ingestion lag.
 
 Only publish measured results. Do not invent probabilities, latency, accuracy, or recovery values.
 
----
-
-## Security and production boundary
-
+Security and production boundary
 This release is intended for authorized local research environments.
 
 Before external or production deployment, add and validate:
 
-- TLS for API, dashboard, and device channels.
-- Persistent identity provider, strong password hashing, MFA, and SSO.
-- PostgreSQL or TimescaleDB for durable events and metrics.
-- Persistent audit records and retention controls.
-- Rate limiting and reverse-proxy protection.
-- Controller high availability and rule reconciliation.
-- Device enrollment and certificate rotation.
-- Multi-tenant isolation.
-- Production monitoring, backup, and incident response.
-- Device-specific integration and load testing.
+TLS for API, dashboard, and device channels.
+
+Persistent identity provider, strong password hashing, MFA, and SSO.
+
+PostgreSQL or TimescaleDB for durable events and metrics.
+
+Persistent audit records and retention controls.
+
+Rate limiting and reverse-proxy protection.
+
+Controller high availability and rule reconciliation.
+
+Device enrollment and certificate rotation.
+
+Multi-tenant isolation.
+
+Production monitoring, backup, and incident response.
+
+Device-specific integration and load testing.
 
 Do not expose the local API or dashboard directly to the public Internet.
 
----
-
-## Commercial positioning
-
+Commercial positioning
 SDN Sentinel is best positioned as an explainable SDN security platform for:
 
-- Universities and network-security laboratories.
-- Private clouds and data centers.
-- SDN/OpenFlow research teams.
-- Programmable-network testbeds.
-- Managed network-security providers.
+Universities and network-security laboratories.
+
+Private clouds and data centers.
+
+SDN/OpenFlow research teams.
+
+Programmable-network testbeds.
+
+Managed network-security providers.
 
 The product differentiator is:
 
-```text
+text
 Explainable detection
 + topology awareness
 + programmable enforcement
 + switch-counter verification
 + reproducible evidence
-```
-
 The current release is a validated local-lab and commercial-MVP foundation. It is not a carrier-scale or Internet-wide DDoS scrubbing service.
 
----
+Documentation
+Architecture
 
-## Documentation
+Project status
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Project status](docs/PROJECT_STATUS.md)
-- [Threat model](docs/THREAT_MODEL.md)
-- [Demo script](docs/DEMO_SCRIPT.md)
-- [Final experiment results](docs/FINAL_EXPERIMENT_RESULTS.md)
-- [Known limitations](docs/KNOWN_LIMITATIONS.md)
-- [Commercial MVP](docs/COMMERCIAL_MVP.md)
-- [Release readiness](docs/RELEASE_READINESS.md)
-- [Submission checklist](docs/release/SUBMISSION_CHECKLIST.md)
-- [Research benchmark plan](docs/research/BENCHMARK_PLAN.md)
-- [Research claims](docs/research/RESEARCH_CLAIMS.md)
-- [Commercial gap analysis](docs/research/COMMERCIAL_GAP_ANALYSIS.md)
+Threat model
 
----
+Demo script
 
-## License
+Final experiment results
 
+Known limitations
+
+Commercial MVP
+
+Release readiness
+
+Submission checklist
+
+Research benchmark plan
+
+Research claims
+
+Commercial gap analysis
+
+Final 10/10 evaluation plan
+
+License
 Add the license that matches your intended distribution before public commercial use.
 
----
+Author
+Vishwas Manjunath
 
-## Author
-
-**Vishwas Manjunath**
-
-GitHub: [Vishwas-Cyber](https://github.com/Vishwas-Cyber)
+GitHub: Vishwas-Cyber
