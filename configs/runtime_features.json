@@ -1,0 +1,6 @@
+{
+  "features": ["pps", "bps", "flow_count", "byte_count", "duration"],
+  "positive_label": 1,
+  "threshold": 0.8,
+  "status": "runtime schema contract"
+}

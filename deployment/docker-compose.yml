@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.api
+    environment:
+      SDN_ADMIN_PASSWORD: change-this-in-production
+      SDN_ANALYST_PASSWORD: change-this-in-production
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ../configs:/app/configs
+      - ../results:/app/results

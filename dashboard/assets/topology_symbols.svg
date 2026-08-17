@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>
+<symbol id="controller" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#d8a24a" stroke="#f4ead8" stroke-width="3"/><circle cx="32" cy="32" r="8" fill="#2b2115"/><path d="M32 8v12M32 44v12M8 32h12M44 32h12" stroke="#f4ead8" stroke-width="4" stroke-linecap="round"/></symbol>
+<symbol id="switch" viewBox="0 0 64 64"><rect x="8" y="16" width="48" height="32" rx="6" fill="#a998d4" stroke="#f4ead8" stroke-width="3"/><path d="M18 27h28M18 37h28" stroke="#302746" stroke-width="4" stroke-linecap="round"/><circle cx="18" cy="27" r="3" fill="#302746"/><circle cx="18" cy="37" r="3" fill="#302746"/></symbol>
+<symbol id="router" viewBox="0 0 64 64"><path d="M32 7l23 25-23 25L9 32z" fill="#e28b4d" stroke="#f4ead8" stroke-width="3"/><path d="M20 32h24M32 20v24" stroke="#4a2819" stroke-width="4" stroke-linecap="round"/></symbol>
+<symbol id="host" viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="32" rx="4" fill="#79c99a" stroke="#f4ead8" stroke-width="3"/><path d="M22 54h20M32 42v12" stroke="#f4ead8" stroke-width="4" stroke-linecap="round"/></symbol>
+</defs></svg>

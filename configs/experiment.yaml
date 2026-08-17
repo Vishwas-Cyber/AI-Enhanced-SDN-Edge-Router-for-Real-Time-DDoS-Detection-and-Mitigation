@@ -1,0 +1,14 @@
+name: sdn-sentinel-authorized-lab
+purpose: explainable-ddos-detection-and-openflow-mitigation
+scope: local-mininet-only
+controller: ryu
+openflow_version: '1.3'
+switch: ovs
+victim: h1
+sources: [h2, h3]
+normal_test: 'h2 ping -c 10 h1'
+attack_test: 'h2 ping -f h1'
+mitigation_priority: 500
+idle_timeout_seconds: 60
+hard_timeout_seconds: 180
+runtime_ml_status: schema-alignment-required

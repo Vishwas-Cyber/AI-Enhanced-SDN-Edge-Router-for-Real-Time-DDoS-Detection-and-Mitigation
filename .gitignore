@@ -1,6 +1,19 @@
-data/final1.csv
-data/insdn.csv
-
-# large data files
-data/final1.csv
-data/insdn.csv
+.venv/
+mininam-env/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.onnx
+data/*.csv
+data/*.zip
+results/*.pcap
+results/*.log
+MiniNAM/
+MiniNAM_fork/
+mininet/
+.streamlit/secrets.toml
+.DS_Store

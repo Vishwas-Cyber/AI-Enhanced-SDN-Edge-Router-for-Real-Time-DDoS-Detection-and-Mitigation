@@ -1,0 +1,15 @@
+# Runtime and dashboard dependencies
+ryu
+scikit-learn==1.5.0
+pandas
+numpy
+networkx
+plotly
+streamlit
+watchdog
+pyyaml
+
+# Test dependencies
+pytest
+
+httpx2

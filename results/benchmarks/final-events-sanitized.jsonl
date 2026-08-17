@@ -1,0 +1,2 @@
+{"bps": 5076860.139860143, "bytes": 10165092, "datapath_id": 1, "duration_sec": 22.97, "event": "ddos_detected", "hard_timeout": 180, "idle_timeout": 60, "model_probability": null, "packets": 103726, "pps": 51804.695304695335, "rule_priority": 500, "source_id": "source-1"}
+{"bps": 5076860.139860134, "bytes": 10164994, "datapath_id": 1, "duration_sec": 22.969, "event": "ddos_detected", "hard_timeout": 180, "idle_timeout": 60, "model_probability": null, "packets": 103725, "pps": 51804.69530469524, "rule_priority": 500, "source_id": "source-2"}

@@ -1,0 +1,11 @@
+[server]
+fileWatcherType = "watchdog"
+headless = true
+
+[theme]
+base = "dark"
+primaryColor = "#d8a24a"
+backgroundColor = "#11100e"
+secondaryBackgroundColor = "#1b1916"
+textColor = "#f4ead8"
+font = "sans serif"

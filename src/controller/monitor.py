@@ -12,6 +12,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
+import json
 
 FEATURES = [
     'packet_count',
@@ -53,6 +54,10 @@ class Monitor(app_manager.RyuApp):
 
         self.flow_state = {}
         self.blocked = set()
+
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+        self.event_path = os.path.join(base_dir, 'results', 'events.jsonl')
+        os.makedirs(os.path.dirname(self.event_path), exist_ok=True)
 
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
         model_path = os.path.join(base_dir, 'model.pkl')
@@ -326,6 +331,13 @@ class Monitor(app_manager.RyuApp):
         for key in stale_keys:
             del self.flow_state[key]
 
+    def _write_event(self, event):
+        try:
+            with open(self.event_path, 'a', encoding='utf-8') as handle:
+                handle.write(json.dumps(event, sort_keys=True) + '\n')
+        except Exception as exc:
+            self.logger.warning('Could not write event telemetry: %s', exc)
+
     def _block_source(self, datapath, in_port, src, dst, packet_count, byte_count, duration,
                       pps, bps, model_prob, rule_attack, model_attack,
                       first_seen_time, detection_latency):
@@ -342,6 +354,23 @@ class Monitor(app_manager.RyuApp):
         )
 
         self.blocked.add(src)
+
+        self._write_event({
+            'event': 'ddos_detected',
+            'datapath_id': int(datapath.id),
+            'source_mac': str(src),
+            'packets': int(packet_count),
+            'bytes': int(byte_count),
+            'duration_sec': float(duration),
+            'pps': float(pps),
+            'bps': float(bps),
+            'model_probability': (
+                None if model_prob is None else float(model_prob)
+            ),
+            'rule_priority': 500,
+            'idle_timeout': self.BLOCK_IDLE_TIMEOUT,
+            'hard_timeout': self.BLOCK_HARD_TIMEOUT
+        })
         prob_text = f'{model_prob:.4f}' if model_prob is not None else 'N/A'
 
         print('\n' + '=' * 70)

@@ -1,0 +1,12 @@
+name: default-authorized-lab-policy
+enabled: true
+mode: observe_and_mitigate
+pps_threshold: 10000
+bps_threshold: 1000000
+model_probability_threshold: 0.8
+priority: 500
+idle_timeout: 60
+hard_timeout: 180
+allowlisted_sources: []
+require_manual_approval: false
+scope: local-mininet-only

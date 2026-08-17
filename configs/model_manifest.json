@@ -1,0 +1,9 @@
+{
+  "model_version": "1.0.0",
+  "runtime_status": "rule_based_until_retrained",
+  "framework": "scikit-learn",
+  "framework_version": "1.5.0",
+  "features": ["pps", "bps", "packets", "bytes", "duration_sec"],
+  "threshold": 0.8,
+  "artifact": "model.pkl"
+}
